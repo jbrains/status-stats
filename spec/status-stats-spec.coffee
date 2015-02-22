@@ -24,6 +24,15 @@ describe "integrating this plugin with Atom", ->
       atom.commands.dispatch(workspaceElement, "status-stats:toggle")
       expect(entryPoint.toggle).toHaveBeenCalled()
 
+    it "Atom disables commands when the package is deactivated, even if the package doesn't disable them", ->
+      spyOn(entryPoint, "toggle")
+
+      runs -> atom.packages.activatePackage("status-stats")
+      runs -> atom.packages.deactivatePackage("status-stats")
+
+      atom.commands.dispatch(workspaceElement, "status-stats:toggle")
+      expect(entryPoint.toggle).not.toHaveBeenCalled()
+
   xit "only enables the toggle command once the package is active", ->
     # ASSUME that the package is not activated by default
     expect(atom.packages.isPackageActive("status-stats")).toBe(false)
