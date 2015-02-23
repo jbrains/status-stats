@@ -1,6 +1,7 @@
 {
   "name": "status-stats",
   "main": "./lib/status-stats",
+  "activationCommands": ["status-stats:toggle"],
   "version": "0.1.0",
   "private": false,
   "description": "A derivative of @segphault's status-wordcount. Displays wordcount, grade level, and Flesh Kincaid scores, to help you write for your audience.",
